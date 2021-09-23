@@ -1,7 +1,7 @@
 /*
  * @Author: lihuan
  * @Date: 2021-09-22 11:34:27
- * @LastEditTime: 2021-09-23 16:17:14
+ * @LastEditTime: 2021-09-23 17:57:49
  * @Email: 17719495105@163.com
  */
 
@@ -29,9 +29,9 @@ func main()  {
 	if err != nil {
 		fmt.Println(err)
 	}
-	 e := utils.NewDbEngine()
-	 e.AutoMigrate(&models.User{})
-	 fmt.Println(1111111,e)
+	 db := utils.NewDbEngine()
+	 db.AutoMigrate(&models.User{})
+	
 	// 注册路由
 	r := router.SetupRouter()
 	addr := fmt.Sprintf(cfg.AppHost+ ":" + cfg.AppPort)
