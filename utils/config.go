@@ -1,3 +1,9 @@
+/*
+ * @Author: lihuan
+ * @Date: 2021-09-23 08:21:31
+ * @LastEditTime: 2021-09-24 10:08:29
+ * @Email: 17719495105@163.com
+ */
 package utils
 
 import (
@@ -9,6 +15,7 @@ import (
 type Config struct {
 	AppPort string `json:"app_port"`
 	AppHost string `json:"app_host"`
+	AppMode string `json:"app_mode"`
 	Database  DatabaseCfg `json:"database"`
 }
 
