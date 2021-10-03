@@ -1,20 +1,33 @@
 /*
  * @Author: lihuan
  * @Date: 2021-09-24 09:40:24
- * @LastEditTime: 2021-09-24 09:42:15
+ * @LastEditTime: 2021-10-02 08:49:23
  * @Email: 17719495105@163.com
- */package constants
+ */
+package constants
 
- const (
-	SUCCESS       = 2000
-	ERROR    	  = 5000
- )
- 
- var MsgFlags = map[int]string{
-	SUCCESS:         "成功",
-	ERROR:  "未知错误",
+const (
+	SUCCESS              = 2000
+	NOT_FOUND_USER       = 2001
+	PASSWORD_ERROR       = 2002
+	GENERATE_TOKEN_ERROR = 2003
+	INVALID_TOKEN_ERROR  = 2004
+	TOKEN_TIMEOUT_ERROR  = 2005
+	TOKEN_FAIL           = 2006
+	UNAUTHORIZED_ERROR   = 2007
+	RECORD_NOT_FOUND     = 3000
+	ERROR                = 5000
+)
 
- }
-
- 
-
+var MsgFlags = map[int]string{
+	SUCCESS:              "成功",
+	NOT_FOUND_USER:       "用户名不存在",
+	PASSWORD_ERROR:       "密码不正确",
+	GENERATE_TOKEN_ERROR: "Token 生成失败",
+	INVALID_TOKEN_ERROR:  "无效的 Token",
+	TOKEN_TIMEOUT_ERROR:  "token过期",
+	UNAUTHORIZED_ERROR:   "没有权限",
+	TOKEN_FAIL:           "解析token失败",
+	RECORD_NOT_FOUND:     "未匹配到该记录",
+	ERROR:                "未知错误",
+}

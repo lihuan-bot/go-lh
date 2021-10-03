@@ -1,7 +1,7 @@
 /*
  * @Author: lihuan
  * @Date: 2021-09-22 11:34:27
- * @LastEditTime: 2021-09-24 10:20:05
+ * @LastEditTime: 2021-10-01 07:37:05
  * @Email: 17719495105@163.com
  */
 
@@ -14,10 +14,8 @@ import (
 	"go-lh/utils"
 )
 
+func main() {
 
-
-func main()  {
-	 
 	// 初始化配置文件
 	cfg, err := utils.ParseConfig("./config/app.json")
 
@@ -29,12 +27,13 @@ func main()  {
 	if err != nil {
 		fmt.Println(err)
 	}
-	 db := utils.NewDbEngine()
-	 db.AutoMigrate(&models.User{})
-	
+
+	db := utils.GetDB()
+	db.AutoMigrate(&models.User{})
+
 	// 注册路由
-	r := router.SetupRouter()
-	addr := fmt.Sprintf(cfg.AppHost+ ":" + cfg.AppPort)
-	
+	r := router.SetupRouter(cfg)
+	addr := fmt.Sprintf(cfg.AppHost + ":" + cfg.AppPort)
+
 	r.Run(addr)
 }
