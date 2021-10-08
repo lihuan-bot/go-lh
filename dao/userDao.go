@@ -1,7 +1,7 @@
 /*
  * @Author: lihuan
  * @Date: 2021-09-23 14:03:14
- * @LastEditTime: 2021-09-30 17:54:34
+ * @LastEditTime: 2021-10-08 17:28:40
  * @Email: 17719495105@163.com
  */
 
@@ -37,4 +37,24 @@ func (u *UserDao) Add(p *models.User) error {
 	}
 	return nil
 
+}
+
+func (u *UserDao) GetUserInfo(id int) (*models.UserInfo, error) {
+
+	var userInfo models.UserInfo
+
+	if err := u.DB.Where("user_id = ?", id).First(&userInfo).Error; err != nil {
+		return nil, err
+	}
+	return &userInfo, nil
+}
+
+func (u *UserDao) UpdateUserInfo(id int, uInfo *models.UserInfo) (*models.UserInfo, error) {
+	var userInfo models.UserInfo
+
+	if err := u.DB.Model(&userInfo).Where("user_id = ?", id).Updates(uInfo).Error; err != nil {
+		return nil, err
+	}
+
+	return &userInfo, nil
 }

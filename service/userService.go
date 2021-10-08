@@ -1,7 +1,7 @@
 /*
  * @Author: lihuan
  * @Date: 2021-09-23 11:11:10
- * @LastEditTime: 2021-09-30 17:53:25
+ * @LastEditTime: 2021-10-08 17:17:16
  * @Email: 17719495105@163.com
  */
 package service
@@ -38,4 +38,24 @@ func (u *UserService) Add(p *models.User) error {
 	}
 
 	return nil
+}
+
+func (u *UserService) GetUserInfo(id int) (*models.UserInfo, error) {
+	ud := dao.NewUserDao()
+	userInfo, err := ud.GetUserInfo(id)
+	if err != nil {
+		return nil, err
+	}
+	return userInfo, nil
+}
+
+func (u *UserService) UpdateUserInfo(id int, uInfo *models.UserInfo) (*models.UserInfo, error) {
+	ud := dao.NewUserDao()
+
+	userInfo, err := ud.UpdateUserInfo(id, uInfo)
+
+	if err != nil {
+		return nil, err
+	}
+	return userInfo, nil
 }

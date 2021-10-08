@@ -1,7 +1,7 @@
 /*
  * @Author: lihuan
  * @Date: 2021-09-22 11:34:27
- * @LastEditTime: 2021-10-01 07:37:05
+ * @LastEditTime: 2021-10-08 15:17:23
  * @Email: 17719495105@163.com
  */
 
@@ -29,7 +29,7 @@ func main() {
 	}
 
 	db := utils.GetDB()
-	db.AutoMigrate(&models.User{})
+	db.AutoMigrate(&models.User{}, &models.UserInfo{})
 
 	// 注册路由
 	r := router.SetupRouter(cfg)

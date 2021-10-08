@@ -1,7 +1,7 @@
 /*
  * @Author: lihuan
  * @Date: 2021-09-22 13:22:13
- * @LastEditTime: 2021-10-02 08:51:25
+ * @LastEditTime: 2021-10-08 17:27:08
  * @Email: 17719495105@163.com
  */
 package router
@@ -29,6 +29,9 @@ func SetupRouter(cfg *utils.Config) *gin.Engine {
 	{
 
 		v1Group.POST("/user/add", controller.UserCtl.Add)
+
+		v1Group.GET("/user/userInfo/:id", controller.UserCtl.GetUserInfo)
+		v1Group.PUT("/user/userInfo/:id", controller.UserCtl.UpdateUserInfo)
 
 	}
 	return r

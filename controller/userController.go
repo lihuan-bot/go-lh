@@ -1,7 +1,7 @@
 /*
  * @Author: lihuan
  * @Date: 2021-09-22 13:30:04
- * @LastEditTime: 2021-10-02 09:58:08
+ * @LastEditTime: 2021-10-08 17:33:52
  * @Email: 17719495105@163.com
  */
 
@@ -14,6 +14,7 @@ import (
 	"go-lh/service"
 	"go-lh/utils"
 	"net/http"
+	"strconv"
 
 	"github.com/gin-gonic/gin"
 )
@@ -47,7 +48,7 @@ func (u *UserController) Login(ctx *gin.Context) {
 		return
 	}
 
-	utils.Response(ctx, http.StatusOK, constants.SUCCESS, gin.H{"username": us.UserName, "token": token})
+	utils.Response(ctx, http.StatusOK, constants.SUCCESS, gin.H{"username": us.UserName, "id": us.ID, "token": token})
 }
 
 // 新增用户
@@ -58,10 +59,44 @@ func (u *UserController) Add(ctx *gin.Context) {
 	ctx.BindJSON(&user)
 
 	if err := service.UserSrv.Add(&user); err != nil {
-		utils.Response(ctx, http.StatusOK, constants.ERROR, err)
+		utils.Response(ctx, http.StatusOK, constants.ERROR, nil)
 		return
 	}
 
 	utils.Response(ctx, http.StatusOK, constants.SUCCESS, nil)
+
+}
+
+// 获取用户信息
+func (u *UserController) GetUserInfo(ctx *gin.Context) {
+
+	id, _ := strconv.Atoi(ctx.Param("id"))
+
+	userInfo, err := service.UserSrv.GetUserInfo(id)
+
+	if err != nil {
+		utils.Response(ctx, http.StatusOK, constants.GET_USERINFO_ERROR, nil)
+		return
+	}
+
+	utils.Response(ctx, http.StatusOK, constants.SUCCESS, userInfo)
+
+}
+
+// 更新用户信息
+func (u *UserController) UpdateUserInfo(ctx *gin.Context) {
+
+	var userInfo models.UserInfo
+
+	ctx.BindJSON(&userInfo)
+
+	id, _ := strconv.Atoi(ctx.Param("id"))
+
+	uInfo, err := service.UserSrv.UpdateUserInfo(id, &userInfo)
+	if err != nil {
+		utils.Response(ctx, http.StatusOK, constants.UPDATE_USERINFO_ERROR, nil)
+		return
+	}
+	utils.Response(ctx, http.StatusOK, constants.SUCCESS, uInfo)
 
 }
