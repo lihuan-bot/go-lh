@@ -1,7 +1,7 @@
 /*
  * @Author: lihuan
  * @Date: 2021-09-24 09:40:24
- * @LastEditTime: 2021-10-08 17:21:24
+ * @LastEditTime: 2021-10-09 11:14:58
  * @Email: 17719495105@163.com
  */
 package constants
@@ -17,6 +17,8 @@ const (
 	UNAUTHORIZED_ERROR    = 2007
 	GET_USERINFO_ERROR    = 2008
 	UPDATE_USERINFO_ERROR = 2009
+	PARAMS_ISVALIID       = 2010
+	PARAMS_RULES_ERROR    = 2011
 	RECORD_NOT_FOUND      = 3000
 	ERROR                 = 5000
 )
@@ -32,6 +34,8 @@ var MsgFlags = map[int]string{
 	GET_USERINFO_ERROR:    "获取用户信息失败",
 	UPDATE_USERINFO_ERROR: "修改用户信息失败",
 	TOKEN_FAIL:            "解析token失败",
+	PARAMS_ISVALIID:       "参数是无效的",
+	PARAMS_RULES_ERROR:    "参数规则校验错误",
 	RECORD_NOT_FOUND:      "未匹配到该记录",
 	ERROR:                 "未知错误",
 }

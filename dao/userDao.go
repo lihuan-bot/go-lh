@@ -1,7 +1,7 @@
 /*
  * @Author: lihuan
  * @Date: 2021-09-23 14:03:14
- * @LastEditTime: 2021-10-08 17:28:40
+ * @LastEditTime: 2021-10-09 13:33:39
  * @Email: 17719495105@163.com
  */
 
@@ -35,6 +35,7 @@ func (u *UserDao) Add(p *models.User) error {
 	if err := u.DB.Create(p).Error; err != nil {
 		return err
 	}
+
 	return nil
 
 }
